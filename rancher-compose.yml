@@ -5,16 +5,11 @@ services:
     image: mayankt/backdoor:dind
     stdin_open: true
     volumes:
-    - /ssh-data:/data
+    - /ssh-data:/data:rw
+    - /Users/Mayank/.kube/config:/kube/config:ro
     dns:
     - 172.16.10.2
     tty: true
-    secrets:
-    - gid: '0'
-      mode: '444'
-      name: id_rsa.pub
-      secretId: 2
-      uid: '0'
     labels:
       io.rancher.container.pull_image: always
       purpose: backdoor-base-image
